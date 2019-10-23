@@ -4,7 +4,7 @@ import versioneer
 
 
 setup(
-    name="ups",
+    name="ups-api",
     description="Validate street addresses with the UPS API",
     author="Eric Hutton",
     author_email="huttone@colorado.edu",
@@ -15,7 +15,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    install_requires=["click", "pandas"],
+    install_requires=["click", "pandas", "requests"],
     setup_requires=[],
     packages=find_packages(),
     entry_points={"console_scripts": ["ups=ups.cli:ups"]},
