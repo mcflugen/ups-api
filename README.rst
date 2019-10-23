@@ -1,13 +1,33 @@
-|Build Status| |License: MIT| |Code style: black| |Launch Binder|
+|Build Status| |License: MIT| |Code style: black| |Launch Binder| |PyPI|
 
-ups-api
+=======
+UPS-API
 =======
 
 Python library and command line tools to query the UPS API
 
+*******
+Install
+*******
+
+To install the *UPS-API* command-line tools and package,
+
+.. code:: bash
+
+   $ pip install ups-api
+
+If installing from source, run the following in the root folder of the repository,
+
+.. code:: bash
+
+   $ pip install -e .
+
+*****
+Usage
+*****
 
 Command line
-------------
+============
 
 To validate just a single address,
 
@@ -33,7 +53,7 @@ a *CSV* file (the csv file is of the form *street*, *city*, *state*, *zip*),
 
 
 Python
-------
+======
 
 To validate an address in *Python* use the *UpsXav* class,
 
@@ -53,8 +73,9 @@ This will print the following::
     1600 PENNSYLVANIA AVE NW,WASHINGTON,DC,20500
     1600 PENNSYLVANIA AVE NW,WASHINGTON,DC,20502
 
+***************
 The UPS XAV API
-===============
+***************
 
 A typical request to the UPS Street-level address validator will look
 something like the following:
@@ -129,3 +150,5 @@ section will be empty.
    :target: https://github.com/ambv/black
 .. |Launch Binder| image:: https://static.mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/mcflugen/ups-api.git/master?filepath=notebooks%2Fups-xav.ipynb
+.. |PyPI| image:: https://badge.fury.io/py/ups-api.svg
+    :target: https://badge.fury.io/py/ups-api
