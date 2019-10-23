@@ -30,7 +30,9 @@ def test_from_str(white_house):
     address = Address.from_str("1600 Pennsylvania Avenue NW, Washington, DC, 20500")
     assert address == white_house
 
-    address = Address.from_str('"1600 Pennsylvania Avenue NW, POTUS", Washington, DC, 20500')
+    address = Address.from_str(
+        '"1600 Pennsylvania Avenue NW, POTUS", Washington, DC, 20500'
+    )
     assert address.address == "1600 Pennsylvania Avenue NW, POTUS"
     assert address.city == "Washington"
     assert address.state == "DC"
@@ -57,10 +59,7 @@ def test_to_str():
 @pytest.mark.parametrize("zip", (20500, "20500"))
 def test_zip_types(zip):
     address = Address(
-        address="1600 Pennsylvania Avenue NW",
-        city="Washington",
-        state="DC",
-        zip=zip,
+        address="1600 Pennsylvania Avenue NW", city="Washington", state="DC", zip=zip
     )
     assert address.zip == str(zip)
 

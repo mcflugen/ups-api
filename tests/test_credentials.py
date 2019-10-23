@@ -1,15 +1,11 @@
 import os
 
-import pytest
-
 from ups import UpsCredentials
 
 
 def test_create():
     credentials = UpsCredentials(
-        username="eric.idle",
-        password="monty",
-        license="123456789",
+        username="eric.idle", password="monty", license="123456789"
     )
     assert credentials._username == "eric.idle"
     assert credentials._password == "monty"
@@ -18,9 +14,7 @@ def test_create():
 
 def test_jsonify():
     as_json = UpsCredentials(
-        username="eric.idle",
-        password="monty",
-        license="123456789",
+        username="eric.idle", password="monty", license="123456789"
     ).jsonify()
     assert as_json["UsernameToken"]["Username"] == "eric.idle"
     assert as_json["UsernameToken"]["Password"] == "monty"
