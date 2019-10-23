@@ -1,4 +1,5 @@
 import getpass
+import io
 import logging
 import os
 from collections import OrderedDict
@@ -30,7 +31,7 @@ class Address:
     def address(self, val):
         if isinstance(val, (tuple, list)):
             val = " ".join(val)
-        self._street_address = val
+        self._street_address = val.strip()
 
     @property
     def city(self):
@@ -38,7 +39,7 @@ class Address:
 
     @city.setter
     def city(self, new_city):
-        self._city = new_city
+        self._city = new_city.strip()
 
     @property
     def state(self):
@@ -46,7 +47,7 @@ class Address:
 
     @state.setter
     def state(self, new_state):
-        self._state = new_state
+        self._state = new_state.strip()
 
     @property
     def zip(self):
@@ -54,10 +55,7 @@ class Address:
 
     @zip.setter
     def zip(self, new_zip):
-        self._zip = str(int(new_zip))
-
-    def parts(self):
-        return (self.address, self.city, self.state, self.zip)
+        self._zip = str(int(new_zip)).strip()
 
     def items(self):
         return (
@@ -68,12 +66,7 @@ class Address:
         )
 
     def as_dict(self):
-        return {
-            "address": self.address,
-            "city": self.city,
-            "state": self.state,
-            "zip": self.zip,
-        }
+        return dict(self.items())
 
     def jsonify(self):
         return {
@@ -88,11 +81,10 @@ class Address:
 
     @classmethod
     def from_str(cls, address, sep=","):
-        try:
-            address, city, state, zip = address.split(sep)
-        except ValueError:
-            raise AddressParseError(address)
-        return cls(address=address, city=city, state=state, zip=zip)
+        address = pd.read_csv(
+            io.StringIO(address), sep=sep, names=("address", "city", "state", "zip")
+        )
+        return cls(**address.iloc[0])
 
     def __str__(self):
         return (
@@ -100,7 +92,9 @@ class Address:
             .to_csv(header=False, index=False)
             .strip()
         )
-        # return "{address}, {city}, {state}, {zip}".format(**self.as_dict())
+
+    def __eq__(self, other):
+        return self.as_dict() == other.as_dict()
 
 
 class UpsCredentials:
