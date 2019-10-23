@@ -60,6 +60,7 @@ A typical request to the UPS Street-level address validator will look
 something like the following:
 
 .. code:: python
+
     >>> data = {
         "UPSSecurity": {
             "UsernameToken": {"Username": YOUR_USERNAME, "Password": YOUR_PASSWORD},
@@ -86,12 +87,14 @@ something like the following:
 And then to validate,
 
 .. code:: python
+
     >>> url = "https://onlinetools.ups.com/rest/XAV"
     >>> response = requests.post(url, json=data)
 
 This will generate the following response,
 
 .. code:: python
+
     {
         "XAVResponse": {
             "Response": {
@@ -124,5 +127,5 @@ section will be empty.
    :target: https://opensource.org/licenses/MIT
 .. |Code style: black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/ambv/black
-.. |Launch Binder"| image:: https://static.mybinder.org/badge_logo.svg
+.. |Launch Binder| image:: https://static.mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/mcflugen/ups-api.git/master?filepath=notebooks%2Fups-xav.ipynb
