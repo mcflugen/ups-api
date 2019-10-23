@@ -102,17 +102,17 @@ class UpsCredentials:
         self._password = (
             password
             or os.environ.get("UPS_PASSWORD", None)
-            or getpass(prompt="Password: ")
+            or getpass.getpass(prompt="Password: ")
         )
         self._username = (
             username
             or os.environ.get("UPS_USERNAME", None)
-            or getpass(prompt="Username: ")
+            or getpass.getpass(prompt="Username: ")
         )
         self._license = (
             license
             or os.environ.get("UPS_LICENSE", None)
-            or getpass(prompt="License: ")
+            or getpass.getpass(prompt="License: ")
         )
 
     def jsonify(self):
