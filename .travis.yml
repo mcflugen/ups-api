@@ -14,6 +14,15 @@ jobs:
     - pip install flake8
     - make lint
 
+  - stage: deploy
+    if: tag =~ v.*$
+    os: osx
+    env: CONDA_ENV=3.7
+    script:
+    - pip install twine wheel
+    - python setup.py bdist_wheel
+    - twine upload -u mcflugen -p$PYPI_PASS dist/*ups*
+
 before_install:
 - |
   if [[ $TRAVIS_OS_NAME == "osx" ]]; then
