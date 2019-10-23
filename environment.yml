@@ -1,0 +1,10 @@
+name: ups-testing
+channels:
+- conda-forge
+dependencies:
+- python=3.7
+- pip
+- pip:
+  - click
+  - pandas
+  - requests
